@@ -40,19 +40,24 @@ request('https://www.empireonline.com/movies/features/best-posters/', function(e
     
     var parent =  $('.article__text h2')
     
-    parent.each(function(index){
-    var titles = $('.article__text h2').text();
-    // console.log(titles);
-    var image = $('.article__text h2+p span img[src=jpg].src');
-    console.log(image);
-    var description = $('.article__text h2+p+p').text();
+    parent.each(function(index, element){
+        var titles = $(element).text();
+    
+        // var image = $('.article__text h2+p span img[src$=jpg].src');
+        var image = $(element).next('p').children('span').children('img').attr('src');
+        // console.log(image);
+        // var description = $('.article__text h2+p+p').text();
+    
     // console.log(description););
         results.push({
             titles: titles,
-            description: description
+            image: image,
+            // description: description
         });
     // console.log(results);
+  
     });
+    console.log(results);
 })
 
 
